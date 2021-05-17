@@ -20,60 +20,67 @@
       </q-toolbar>
     </q-header>
 
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
-      :width="250"
       bordered
-      content-class="bg-white-1"
+      content-class="bg-primary text-white"
     >
       <q-list>
         <q-item to="/" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="home"/>
+            <q-icon name="shop"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>home</q-item-label>
+            <q-item-label>Back to shop</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/login" active-class="q-item-no-link-highlighting">
+        <q-item to="/admin" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="login"/>
+            <q-icon name="dashboard"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Login</q-item-label>
+            <q-item-label>Dashboard</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/register" active-class="q-item-no-link-highlighting">
+        <q-item to="/profile" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="login"/>
+            <q-icon name="person"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Register</q-item-label>
+            <q-item-label>Profile</q-item-label>
           </q-item-section>
         </q-item>
-
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container class="bg-grey-2">
+      <router-view/>
     </q-page-container>
-    <q-footer class="text-center">Test</q-footer>
   </q-layout>
 </template>
 
 <script>
+    import EssentialLink from 'components/EssentialLink'
+    export default {
+        name: 'MainLayout',
+        components: {
 
+            EssentialLink
+        },
+        data() {
+            return {
+                leftDrawerOpen: false,
+            }
+        },
+methods:{
+  
+},
+/*         beforeMount(){
+          if (this.$store.state.user.role ==='Staff')
+this.$router.push('/')
 
-
-
-export default {
-  name: 'MainLayout',
-  data () {
-    return {
-      leftDrawerOpen: false,
+        } */
     }
-  },
-}
 </script>

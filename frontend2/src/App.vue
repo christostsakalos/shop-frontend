@@ -1,11 +1,11 @@
 <template>
-  <div id="q-app">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 <script>
 import axios from 'axios'
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'App',
 
     beforeCreate() {
@@ -16,6 +16,7 @@ export default {
       } else {
         axios.defaults.headers.common['Authorization'] = ""
       }
-    }
-}
+    },
+})
+
 </script>

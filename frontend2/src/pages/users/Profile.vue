@@ -32,7 +32,7 @@ export default {
                 localStorage.removeItem('token')
                 localStorage.removeItem('email')
                 localStorage.removeItem('userid')
-                localStorage.removeItem('is_admin')
+                localStorage.removeItem('role')
                 this.$store.commit('removeToken')
                 this.$router.push('/')
             },
@@ -40,7 +40,7 @@ export default {
             check(){
        
                            console.log(this.$store.state.isAuthenticated)
-              console.log(this.$store.state.user.is_admin)
+              console.log(this.$store.state.user.role)
             }
         },
 

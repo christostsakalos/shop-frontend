@@ -2,6 +2,9 @@ const routes = [{
         path: '/',
         component: () =>
             import ('layouts/MainLayout.vue'),
+        meta: {
+            guest: true
+        },
         children: [{
                 path: '',
                 component: () =>
@@ -22,49 +25,44 @@ const routes = [{
         ]
     },
 
-    // Login required routes
     {
         path: '/profile',
         component: () =>
             import ('layouts/MainLayout.vue'),
+        meta: {
+            requiresLogin: true
+        },
         children: [{
             path: '',
             name: 'Profile',
             component: () =>
-                import ('../pages/users/Profile.vue'),
+                import ('../pages/users/Profile.vue')
         }, ],
-        meta: {
-            requiresAuth: true
-        }
-
-
     },
-
-    // Admin routes
     {
         path: '/admin',
         component: () =>
-            import ('layouts/MainLayout.vue'),
+            import ('layouts/AdminLayout.vue'),
+        meta: {
+            requiresLogin: true,
+            requiresAdmin: true
+        },
         children: [{
             path: '',
+            name: 'Admin',
             component: () =>
                 import ('../pages/admin/Dashboard.vue')
         }, ],
-        meta: {
-            requireLogin: true,
-            requireAdmin: true
-        }
     },
 
     // Always leave this as last one,
     // but you can also remove it
+
     {
-        path: '*',
+        path: '/:catchAll(.*)*',
         component: () =>
             import ('pages/Error404.vue')
     }
 ]
-
-
 
 export default routes

@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { store } from 'quasar/wrappers'
+import { createStore } from 'vuex'
+
 // import example from './module-example'
-Vue.use(Vuex)
 
 /*
  * If not building with SSR mode, you can
@@ -12,14 +12,14 @@ Vue.use(Vuex)
  * with the Store instance.
  */
 
-export default new Vuex.Store({
+export default new createStore({
     state: {
         isAuthenticated: false,
         token: '',
         user: {
             id: 0,
             email: '',
-            is_admin: false
+            role: ''
         },
 
     },
@@ -30,13 +30,13 @@ export default new Vuex.Store({
                 state.isAuthenticated = true
                 state.user.email = localStorage.getItem('email')
                 state.user.id = localStorage.getItem('userid')
-                state.user.is_admin = localStorage.getItem('is_admin')
+                state.user.role = localStorage.getItem('role')
             } else {
                 state.token = ''
                 state.isAuthenticated = false
                 state.user.id = 0
                 state.user.email = ''
-                state.user.is_admin = false
+                state.user.role = ''
 
             }
         },
@@ -53,5 +53,8 @@ export default new Vuex.Store({
         },
     },
     actions: {},
-    modules: {}
+    modules: {},
+    // enable strict mode (adds overhead!)
+    // for dev mode and --debug builds only
+    strict: process.env.DEBUGGING
 })

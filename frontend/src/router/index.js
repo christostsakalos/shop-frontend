@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import store from '../store'
 import VueRouter from 'vue-router'
+
 import routes from './routes'
 
 Vue.use(VueRouter)
@@ -14,9 +15,10 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
-  const Router = new VueRouter({
-    scrollBehavior: () => ({ x: 0, y: 0 }),
+
+const Router = new VueRouter({
+
+
     routes,
 
     // Leave these as they are and change in quasar.conf.js instead!
@@ -24,16 +26,30 @@ export default function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
-  })
-  
-  Router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresLogin) && !store.state.isAuthenticated) {
-      next('/login')
+})
+
+/* router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+        next({ name: 'Login', query: { next: to.fullPath } })
     } else {
-      next()
+        next()
     }
-  })
+}) */
+/* router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !store.state.isAuthenticated) {
+        next({ name: 'Login', query: { next: to.fullPath } })
+    } else {
+        next()
+    }
+}) */
+
+Router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !store.state.isAuthenticated) {
+        next('/login')
+    } else {
+        next()
+    }
+})
 
 
-  return Router
-}
+export default Router
