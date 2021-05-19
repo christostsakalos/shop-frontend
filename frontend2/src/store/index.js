@@ -19,6 +19,7 @@ export default new createStore({
         user: {
             id: 0,
             email: '',
+            name: '',
             role: ''
         },
 
@@ -31,11 +32,13 @@ export default new createStore({
                 state.user.email = localStorage.getItem('email')
                 state.user.id = localStorage.getItem('userid')
                 state.user.role = localStorage.getItem('role')
+                state.user.name = localStorage.getItem('name')
             } else {
                 state.token = ''
                 state.isAuthenticated = false
                 state.user.id = 0
                 state.user.email = ''
+                state.user.name = ''
                 state.user.role = ''
 
             }

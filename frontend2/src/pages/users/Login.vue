@@ -120,10 +120,12 @@ export default {
                 await axios
                     .get('/api/v1/users/me')
                     .then(response => {
-                        this.$store.commit('setUser', {'id': response.data.id, 'email': response.data.email, 'role': response.data.roles})
+                        this.$store.commit('setUser', {'id': response.data.id, 'email': response.data.email, 'role': response.data.roles, 'name': response.data.get_full_name})
                         localStorage.setItem('email', response.data.email)
                         localStorage.setItem('userid', response.data.id)
                         localStorage.setItem('role', response.data.roles)
+                        localStorage.setItem('name', response.data.get_full_name)
+                        
                     })
                     .catch(error => {
                         console.log(error)

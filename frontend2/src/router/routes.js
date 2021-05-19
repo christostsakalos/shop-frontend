@@ -40,6 +40,14 @@ const routes = [{
         }, ],
     },
     {
+        path: '/logout',
+        component: () =>
+            import ('../pages/users/Logout.vue'),
+        meta: {
+            requiresLogin: true
+        },
+    },
+    {
         path: '/admin',
         component: () =>
             import ('layouts/AdminLayout.vue'),
