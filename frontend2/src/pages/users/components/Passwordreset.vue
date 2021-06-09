@@ -59,13 +59,13 @@ export default {
           console.log(values)
             axios.post(`api/v1/users/set_password/`, values).then (response =>{ this.$q.notify({
           message: 'Details updated!',
-          clolor: 'success'
+          color: 'positive'
         })
         }).catch(error => {if (error.response) {
       for (const property in error.response.data) {
       this.errors.push(this.$q.notify({
           message: ` ${error.response.data[property]}`,
-          clolor: 'success'
+          color: 'negative'
         }))
         }
         } else if (error.message) {

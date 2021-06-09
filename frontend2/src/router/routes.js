@@ -20,8 +20,35 @@ const routes = [{
                 path: '/register',
                 name: 'Register',
                 component: () =>
-                    import ('../pages/users/Register.vue')
+                    import ('../pages/users/Register.vue'),
             },
+            {
+                path: '/:category_slug',
+                name: 'Parentcategory',
+                component: () =>
+                    import ('../pages/categories/Parentcategory')
+            },
+            {
+                path: '/:category_slug/:subcategory_slug',
+                name: 'Subcategory',
+                component: () =>
+                    import ('../pages/categories/Subcategory')
+            },
+            {
+                path: '/:category_slug/:subcategory_slug/:product_slug',
+                name: 'Productdetail',
+                component: () =>
+                    import ('../pages/products/Productdetail')
+            },
+            {
+                path: '/cart',
+                name: 'Cart',
+                component: () =>
+                    import ('../pages/Cart')
+            },
+
+
+
         ]
     },
 

@@ -115,7 +115,7 @@ methods:{
      await axios.post('/api/v1/users/', values).then(response =>{
         this.$q.notify({
           message: 'User created!',
-          clolor: 'success'
+          color: 'positive'
         })
         this.$router.push('/login')
       }).catch(error => {if (error.response) {

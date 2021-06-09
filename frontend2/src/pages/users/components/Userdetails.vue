@@ -67,13 +67,13 @@ export default {
         onSubmit(values){
             axios.patch(`api/v1/users/me/`, values).then (response =>{ this.$q.notify({
           message: 'Details updated!',
-          clolor: 'success'
+          color: 'positive'
         })
         }).catch(error => {if (error.response) {
       for (const property in error.response.data) {
       this.errors.push(this.$q.notify({
           message: 'Email address is already in use, Please try another',
-          clolor: 'success'
+          color: 'negative'
         }))
         }
         } else if (error.message) {
